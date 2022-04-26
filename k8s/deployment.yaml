@@ -1,0 +1,20 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: react-on-docker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: react-on-docker
+  template:
+    metadata:
+      labels:
+        app: react-on-docker
+    spec:
+      containers:
+        - name: react-on-docker
+          # Dockerhub 이미지 배포 후, 본인이 생성한 이미지를 사용하면 됩니다.
+          image: spacesangsoo/react-on-docker
+          ports:
+            - containerPort: 80

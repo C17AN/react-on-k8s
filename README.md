@@ -1,70 +1,12 @@
-# Getting Started with Create React App
+## 🔨 K8s에 컨테이너화된 프론트엔드 어플리케이션 배포 예제
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Steps
 
-## Available Scripts
+1. `yarn build` 로 리액트 빌드 후, `docker build -t <도커허브 아이디>/<이미지 이름> .` 으로 이미지를 빌드합니다.
+2. 이미지를 도커허브 등의 레포지토리에 배포합니다.
+3. `k8s` 폴더로 이동 후, `deployment.yaml` 및 `load-balancer.yaml` 템플릿을 적용합니다.
+4. 프로비저닝이 완료되면 `minikube ip` 로 아이피 확인 후, `http://<미니쿠베 아이피>:31000` 포트에 배포된 것을 확인할 수 있습니다.
 
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+> 만약 M1 칩 기반 맥북을 사용한다면 포트포워딩을 추가로 수행해야 합니다. [(참고 : 깃허브 이슈)](https://github.com/kubernetes/minikube/issues/9016)
+>
+> 해당 경우, `kubectl port-forward service/load-balancer <로컬 포트>:80` 으로 포트포워딩을 수행한 후, `localhost:<포트포워딩한 로컬 포트>` 에서 결과물을 확인할 수 있습니다.
