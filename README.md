@@ -10,3 +10,7 @@
 > 만약 M1 칩 기반 맥북을 사용한다면 포트포워딩을 추가로 수행해야 합니다. [(참고 : 깃허브 이슈)](https://github.com/kubernetes/minikube/issues/9016)
 >
 > 해당 경우, `kubectl port-forward service/load-balancer <로컬 포트>:80` 으로 포트포워딩을 수행한 후, `localhost:<포트포워딩한 로컬 포트>` 에서 결과물을 확인할 수 있습니다.
+
+### 추가 과제
+
+- 이제 만약 개발 팀에서 소스를 수정한다면, 어떻게 수정된 소스를 컨테이너에 반영할 수 있을끼? []
